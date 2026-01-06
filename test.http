@@ -1,0 +1,118 @@
+
+
+### Получаю все запуски ракет
+GET https://ll.thespacedevs.com/2.0.0/launch/upcoming/
+Content-type: application/json; charset=utf-8
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkzNzYzMzg5LCJpYXQiOjE3NjIyMjczODksImp0aSI6IjBkZTM3MzgwYzA0NTRmYjA5M2Q4OWQ0MGUzMjZlMjhlIiwidXNlcl9pZCI6Mn0.teRS-y4O5pYjzPVZJVbplOKp1WjyG6YMiN0ae1cpjPQ
+
+
+
+
+
+
+
+
+
+
+### Получаю одну генерацию
+GET http://127.0.0.1:8000/api/generation_one/
+Content-type: application/json; charset=utf-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTUzNzQ1LCJpYXQiOjE3NDQ2MTc3NDUsImp0aSI6ImViZjBjYjNiYzQzYjRjNWNiYTg0NDg5NjE5Y2I0MjMwIiwidXNlcl9pZCI6MX0.6cAdZLASK2U0sRwIXwtcqXpkilvP-rY6ypnEVFpG_ic
+
+{
+  "generation_id": "123e4567-e89b-12d3-a456-426614174000"
+}
+
+
+### проверка запущенных генераций
+GET http://127.0.0.1:8000/api/generation/
+Content-type: application/json; charset=utf-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwNTAwOTk0LCJpYXQiOjE3NDg5NjQ5OTQsImp0aSI6Ijk4N2M2YzQ2MTk4YjQ1NjA4ZmU2MjRkNTA1MTRiOTY5IiwidXNlcl9pZCI6MX0.BOZ0gzsag_W845IoDctxpKkx9814mnPgjyQyACj6gRY
+
+
+### создание генерации
+POST http://127.0.0.1:8000/api/generation/
+Content-type: application/json; charset=utf-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc1MDY2MjE4LCJpYXQiOjE3NDM1MzAyMTgsImp0aSI6IjAxNmZmYjIxZDI1YjQyMTliMGExYWRhZWU3ZDMwZGJjIiwidXNlcl9pZCI6MX0.4Nkou92f1gnHzeVC829VHd9XCrVL9omhueQ4SrNXOUc
+
+{
+  "chat_id": "1186342765",
+  "generation_type": "texttovideo",
+  "amount": "100",
+  "description": "утро на северном полюсе",
+  "generation_id": "123e4567-e89b-12d3-a456-426614174000",
+  "status": "dreaming",
+  "transaction_type": "expense",
+  "category": "генерация",
+  "payment_id": "123e4567-e89b-12d3-a456-426614174000",
+  "status_pay": "await"
+}
+
+### Запрос определенного пользователя по chat_id
+GET http://127.0.0.1:8000/api/user/123/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyMDU3NDc4MTQ5LCJpYXQiOjE3NDIxMTgxNDksImp0aSI6Ijg0YTU4MGZkODJmNDRkMDA5NDFhNWQ2YjhkNmJkMGRhIiwidXNlcl9pZCI6Mn0.p2Dra0ZrpBy4EsQQEyEz2lJLuNgh-0zitAOgpMUFriQ
+
+
+### Запрос на регистрацию
+POST http://127.0.0.1:8000/api/auth/users/
+Content-type: application/json; charset=utf-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoyMDU3NDc4MTQ5LCJpYXQiOjE3NDIxMTgxNDksImp0aSI6Ijg0YTU4MGZkODJmNDRkMDA5NDFhNWQ2YjhkNmJkMGRhIiwidXNlcl9pZCI6Mn0.p2Dra0ZrpBy4EsQQEyEz2lJLuNgh-0zitAOgpMUFriQ
+
+{
+  "username": "Test",
+  "chat_id": "111",
+  "password": "Supetest2025",
+  "first_name": "Имя тест",
+  "last_name": "Фамилия тест"
+}
+
+
+### Создание транзакции расход
+POST http://127.0.0.1:8000/api/transaction/
+Content-type: application/json; charset=utf-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc1MzEyODQ2LCJpYXQiOjE3NDM3NzY4NDYsImp0aSI6Ijk5MmNkOTIzNTEyNTQ0MjdiMWEzYTNjNGQ1Y2ZkN2IyIiwidXNlcl9pZCI6MX0.Szg4NEczHlBucWIeQt2HpQbm2Sj-_lhq4kp9ypwcFnI
+
+{
+  "transaction_type": "expense",
+  "chat_id": "1186342765",
+  "amount": 100.00,
+  "description": "расход",
+  "category": "оплата картой",
+  "payment_id": "123e4567-e89b-12d3-a456-426614174000",
+  "confirmation_url": "confirmation_url",
+  "status_pay": "await"
+}
+
+
+
+### тест хук от юкасса
+POST http://127.0.0.1:8000/api/yookassa/
+Content-type: application/json; charset=utf-8
+
+{
+  "type": "notification",
+  "event": "payment.canceled",
+  "object": {"id": "30394788-000f-5001-9000-1b0c9064380a",
+             "status": "succeeded",
+             "amount": {"value": "100.00", "currency": "RUB"},
+             "description": "Оплата генерации",
+             "recipient": {"account_id": "1050435", "gateway_id": "2413590"},
+             "created_at": "2025-08-21T14:57:12.660Z",
+             "test": "False",
+             "paid": "False",
+             "refundable": "False",
+             "metadata": {},
+             "cancellation_details": {"party": "yoo_money", "reason": "expired_on_confirmation"}}
+}
+
+### Тестирую ответ от люмы по статутусу
+POST http://127.0.0.1:8000/api/luma/
+Content-type: application/json; charset=utf-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3MzY4ODM2LCJpYXQiOjE3NTU4MzI4MzYsImp0aSI6ImUwMzE2NGRmN2MzMTRhYjg5NDAyODJiMmExMDRmODZmIiwidXNlcl9pZCI6Mn0.wn88NtMaHd1UzwVGWCEjXYVys7k4G1DydXWZ5b40TTA
+
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "state": "completed",
+  "video": "https://dnznrvs05pmza.cloudfront.net/9702c74e-36c2-4be1-96dc-35df3343b979.mp4?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiYzM0NzRiYzI3OGE3YjE2YiIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc1NTk5MzYwMH0.yz9TPC740L-fjwrRs7wN6XzOyn5qJKkqsmEjpuhe3bg"
+
+}
