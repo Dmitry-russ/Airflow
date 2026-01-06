@@ -1,3 +1,11 @@
+# Airflow
+simple_auth_manager_passwords.json.generated
+airflow.cfg
+airflow.db
+airflow.db-shm
+airflow.db-wal
+logs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

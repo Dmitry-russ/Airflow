@@ -36,9 +36,9 @@ def _get_pictures():
 
 
 with DAG(
-    dag_id="listing_2_02",
+    dag_id="download_image_rocket",
     start_date=pendulum.datetime(2024, 1, 1, tz="UTC"),
-    schedule=None,
+    schedule="@daily",
     catchup=False,
     tags=["example"],
 ) as dag:
