@@ -6,15 +6,15 @@ import pandas as pd
 
 def _print_context(**context):
     # Пример: берём execution_date и dag_id
-    data = {
-        "dag_id": [context["dag"].dag_id],
-        "run_id": [context["run_id"]],
-        "logical_date": [str(context["logical_date"])],
-    }
+    # data = {
+    #     "dag_id": [context["dag"].dag_id],
+    #     "run_id": [context["run_id"]],
+    #     "logical_date": [str(context["logical_date"])],
+    # }
 
-    df = pd.DataFrame(data)
-    df.to_csv("~/Airflow/tmp/context.csv", index=False)
-    print(df)
+    # df = pd.DataFrame(context)
+    # df.to_csv("~/Airflow/tmp/context.csv", index=False)
+    print(context)
 
 
 with DAG(

@@ -5,11 +5,13 @@ from pathlib import Path
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 
 def _get_data(year, month, day, hour, output_path):
+    print(day)
     day = str(int(day)-1)
+    print(day)
     url = (
         "https://dumps.wikimedia.org/other/pageviews/"
         f"{year}/{year}-{month:0>2}/"
@@ -51,8 +53,29 @@ def _fetch_pageviews(pagenames, logical_date):
             )
 
 
+def _write_to_postgres(**context):
+    logical_date = context["logical_date"]
+    
+    # Прочитайте данные из файла или передайте через XCom
+    result = {
+        "Google": 712,
+        "Amazon": 9,
+        "Apple": 54,
+        "Microsoft": 173,
+        "Facebook": 375
+    }
+    
+    hook = PostgresHook(postgres_conn_id="my_postgres")
+    
+    for pagename, count in result.items():
+        hook.run(
+            "INSERT INTO pageview_counts VALUES (%s, %s, %s);",
+            parameters=(pagename, count, logical_date)
+        )
+
+
 with DAG(
-    dag_id="wiki",
+    dag_id="wiki_2",
     start_date=pendulum.datetime(2024, 1, 1, tz="UTC"),
     schedule="@hourly",
     catchup=False,
@@ -87,10 +110,9 @@ with DAG(
         },
     )
 
-    write_to_postgres = SQLExecuteQueryOperator(
+    write_to_postgres = PythonOperator(
         task_id="write_to_postgres",
-        conn_id="my_postgres",
-        sql="postgres_query.sql",
+        python_callable=_write_to_postgres,
     )
 
     get_data >> extract_gz >> fetch_pageviews >> write_to_postgres
